@@ -1,5 +1,5 @@
 //Roham Ali 101344253
-
+//Kenneth Rodriguez 101345891
 
 #include <iostream>
 #include <sstream>
@@ -7,8 +7,6 @@
 #include <cstdlib>
 
 using namespace std;
-
-
 
 class BaseCharacter
 {
@@ -107,7 +105,7 @@ public:
 		s << "PresentHp: " << presentHp << endl;
 		s << "strenght: " << strenght << endl;
 		s << "Intellegence: " << intelligence << endl;
-		s << "Agility" << agility << endl;
+		s << "Agility" << agility << endl << endl << endl;
 		return s.str();
 	}
 
@@ -318,12 +316,12 @@ void ArenaManager(BaseCharacter* player1 , BaseCharacter* player2)
 
 int main()
 {
-	int pick, wp, wpdmg = 0, stg;
+	int pick, wp, wpdmg = 0, stg, agil;
 	string name;
-	
+	int picked,view;
 	for (int i = 0; i <= 10; i++)
 	{
-		cout << "Pick your First fighter:\n 1.Warrior ==> 200hp\n 2.Mage ==> 185hp\n 3.Priest ==> 150hp\n";
+		cout << "Pick your First fighter:\n 1.Warrior ==> 200hp === 20 intelligence\n 2.Mage ==> 185hp === 15 intelligence\n 3.Priest ==> 150hp === 10 intelligence\n";
 		cin >> pick;
 		if (pick == 1)
 		{
@@ -365,9 +363,29 @@ int main()
 				cout << "You picked the wrong number\n The character will have the default value(25)\n";
 				stg = 25;
 			}
+			cout << "Enter your character agility:(0 to 50)\n";
+			cin >> agil;
+			if (agil < 0 || agil >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				agil = 25;
+			}
+			Warrior* soldier1 = new Warrior(name, 200, stg, 20, wpdmg, agil, 0, 20);
+			cout << "Enter number (1) to view your fighter\n";
+			cin >> view;
+			if(view == 1)
+			{
+				cout << "*Fighter:*\n" << soldier1->toString();
+				system("Pause");
+			}
+			
+
+			picked = 1;
 			break;
 		}
-		else if (pick == 2)
+
+
+		if (pick == 2)
 		{
 			cout << "You picked a Mage\n";
 			cout << "Your fighter's name:";
@@ -399,7 +417,7 @@ int main()
 					wpdmg = 20;
 					break;
 				}
-				
+
 			}
 			cout << "Pick your characters strength:(0 to 50)\n";
 			cin >> stg;
@@ -408,9 +426,27 @@ int main()
 				cout << "You picked the wrong number\n The character will have the default value(25)\n";
 				stg = 25;
 			}
+			cout << "Enter your character agility:(0 to 50)\n";
+			cin >> agil;
+			if (agil < 0 || agil >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				agil = 25;
+			}
+			Mage* mag = new Mage(name, 185, stg, 15, wpdmg, 80, agil, 0, 20);
+			cout << "Enter number (1) to view your fighter";
+			cin >> view;
+			if (view == 1)
+			{
+				cout << "*Fighter:*\n" << mag->toString();
+				system("Pause");
+			}
+			picked = 2;
 			break;
 		}
-		else if (pick == 3)
+
+
+		if (pick == 3)
 		{
 			cout << "You picked a Priest\n";
 			cout << "Your fighter's name:";
@@ -450,6 +486,217 @@ int main()
 				cout << "You picked the wrong number\n The character will have the default value for strength(25)\n";
 				stg = 25;
 			}
+			cout << "Enter your character agility:(0 to 50)\n";
+			cin >> agil;
+			if (agil < 0 || agil >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				agil = 25;
+			}
+			Priest* father = new Priest(name, 150, stg, 10, wpdmg, 80, agil, 0, 20);
+			cout << "Enter number (1) to view your fighter";
+			cin >> view;
+			if (view == 1)
+			{
+				cout << "*Fighter:*\n" << father->toString();
+				system("Pause");
+			}
+			picked = 3;
+			break;
+		}
+
+		else
+		{
+			cout << "You picked the wrong number. choose again\n\n";
+
+		}
+	}
+
+	Warrior* soldier1 = new Warrior(name, 200, stg, 20, wpdmg, agil, 0, 20);
+	Mage* mag = new Mage(name, 185, stg, 15, wpdmg, 80, agil, 0, 20);
+	Priest* father = new Priest(name, 150, stg, 10, wpdmg, 80, agil, 0, 20);
+	////////////////////////////
+	int pick1, wp1, wpdmg1 = 0, stg1, agil1;
+	string name1;
+	int picked2;
+	for (int i = 0; i <= 10; i++)
+	{
+		cout << "Pick your Second fighter:\n 1.Warrior ==> 200hp === 20 intelligence\n 2.Mage ==> 185hp === 15 intelligence\n 3.Priest ==> 150hp === 10 intelligence\n";
+		cin >> pick1;
+		if (pick1 == 1)
+		{
+			cout << "You picked a Warrior\n";
+			cout << "Your Second fighter's name:";
+			cin >> name1;
+			for (int i = 0; i <= 10; i++)
+			{
+				cout << "choose your fighter's weapon:\n";
+				cout << "1.Sword ===> 30 damage\n2.Wand ===> 25\n3.Cross ===> 20\n";
+				cin >> wp1;
+				if (wp1 >= 4 && wp1 <= 0)
+				{
+					cout << "You picked the wrong weapon\n";
+				}
+				if (wp1 == 1)
+				{
+					cout << "You picked Sword\n";
+					wpdmg1 = 30;
+					break;
+				}
+				else if (wp1 == 2)
+				{
+					cout << "You picked Wand\n";
+					wpdmg1 = 25;
+					break;
+				}
+				else if (wp1 == 3)
+				{
+					cout << "You picked Cross\n";
+					wpdmg1 = 20;
+					break;
+				}
+			}
+			cout << "Pick your characters strength:(0 to 50)\n";
+			cin >> stg1;
+			if (stg1 < 0 || stg1 >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				stg1 = 25;
+			}
+			cout << "Enter your character agility:(0 to 50)\n";
+			cin >> agil1;
+			if (agil1 < 0 || agil1 >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				agil1 = 25;
+			}
+			Warrior* soldier2 = new Warrior(name1, 200, stg1, 20, wpdmg1, agil1, 0, 20);
+			cout << "Enter number (1) to view your fighter";
+			cin >> view;
+			if (view == 1)
+			{
+				cout << "*Fighter:*\n" << soldier2->toString();
+				system("Pause");
+			}
+			
+			picked2 = 1;
+			break;
+		}
+		else if (pick1 == 2)
+		{
+			cout << "You picked a Mage\n";
+			cout << "Your fighter's name:";
+			cin >> name1;
+			for (int i = 0; i <= 10; i++)
+			{
+				cout << "choose your fighter's weapon:\n";
+				cout << "1.Sword ===> 30 damage\n2.Wand ===> 25\n3.Cross ===> 20\n";
+				cin >> wp1;
+				if (wp1 >= 4 && wp1 <= 0)
+				{
+					cout << "You picked the wrong weapon\n";
+				}
+				if (wp1 == 1)
+				{
+					cout << "You picked Sword\n";
+					wpdmg1 = 30;
+					break;
+				}
+				else if (wp1 == 2)
+				{
+					cout << "You picked Wand\n";
+					wpdmg1 = 25;
+					break;
+				}
+				else if (wp == 3)
+				{
+					cout << "You picked Cross\n";
+					wpdmg1 = 20;
+					break;
+				}
+
+			}
+			cout << "Pick your characters strength:(0 to 50)\n";
+			cin >> stg1;
+			if (stg1 < 0 || stg1 >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				stg1 = 25;
+			}
+			cout << "Enter your character agility:(0 to 50)\n";
+			cin >> agil1;
+			if (agil1 < 0 || agil1 >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				agil1 = 25;
+			}
+			Mage* mag2 = new Mage(name1, 185, stg1, 15, wpdmg1, 80, agil1, 0, 20);
+			cout << "Enter number (1) to view your fighter";
+			cin >> view;
+			if (view == 1)
+			{
+				cout << "*Fighter:*\n" << mag2->toString();
+				system("Pause");
+			}
+			picked2 = 2;
+			break;
+		}
+		else if (pick1 == 3)
+		{
+			cout << "You picked a Priest\n";
+			cout << "Your fighter's name:";
+			cin >> name1;
+			for (int i = 0; i <= 10; i++)
+			{
+				cout << "choose your fighter's weapon:\n";
+				cout << "1.Sword ===> 30 damage\n2.Wand ===> 25\n3.Cross ===> 20\n";
+				cin >> wp1;
+				if (wp1 >= 4 && wp1 <= 0)
+				{
+					cout << "You picked the wrong weapon\n";
+				}
+				if (wp1 == 1)
+				{
+					cout << "You picked Sword\n";
+					wpdmg1 = 30;
+					break;
+				}
+				else if (wp1 == 2)
+				{
+					cout << "You picked Wand\n";
+					wpdmg1 = 25;
+					break;
+				}
+				else if (wp1 == 3)
+				{
+					cout << "You picked Cross\n";
+					wpdmg1 = 20;
+					break;
+				}
+			}
+			cout << "Pick your characters strength:(0 to 50)\n";
+			cin >> stg1;
+			if (stg1 < 0 || stg1 >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value for strength(25)\n";
+				stg1 = 25;
+			}
+			cout << "Enter your character agility:(0 to 50)\n";
+			cin >> agil1;
+			if (agil1 < 0 || agil1 >50)
+			{
+				cout << "You picked the wrong number\n The character will have the default value(25)\n";
+				agil1 = 25;
+			}
+			Priest* father2 = new Priest(name1, 150, stg1, 10, wpdmg1, 80, agil1, 0, 20);
+			cout << "Enter number (1) to view your fighter";
+			cin >> view;
+			if (view == 1)
+			{
+				cout << "*Fighter:*\n" << father2->toString();
+				system("Pause");
+			}
+			picked2 = 3;
 			break;
 		}
 		else
@@ -458,24 +705,127 @@ int main()
 
 		}
 	}
+
+		srand(time(NULL));
+
+
+
+		Warrior* soldier2 = new Warrior(name1, 200, stg1, 20, wpdmg1, agil1, 0, 20);
+		Mage* mag2 = new Mage(name1, 185, stg1, 15, wpdmg1, 80, agil1, 0, 20);
+		Priest* father2 = new Priest(name1, 150, stg1, 10, wpdmg1, 80, agil1, 0, 20);
+		int press, fight;
+		if (picked == 1 && picked2 == 1)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			
+
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << soldier1->toString();
+				cout << "*Contender 2:*\n" << soldier2->toString();
+				system("Pause");
+			}
+
+			ArenaManager(soldier1, soldier2);
+		}
+		if (picked == 2 && picked2 == 1)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << mag->toString();
+				cout << "*Contender 2:*\n" << soldier2->toString();
+				system("Pause");
+			}
+			ArenaManager(mag, soldier2);
+		}
+		if (picked == 3 && picked2 == 1)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << father->toString();
+				cout << "*Contender 2:*\n" << soldier2->toString();
+				system("Pause");
+			}
+			ArenaManager(father, soldier2);
+		}
+		if (picked == 2 && picked2 == 2)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << mag->toString();
+				cout << "*Contender 2:*\n" << mag2->toString();
+				system("Pause");
+			}
+			ArenaManager(mag, mag2);
+		}
+		if (picked == 3 && picked2 == 2)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << mag->toString();
+				cout << "*Contender 2:*\n" << mag2->toString();
+				system("Pause");
+			}
+			ArenaManager(father, mag2);
+		}
+		if (picked == 1 && picked2 == 2)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << soldier1->toString();
+				cout << "*Contender 2:*\n" << mag2->toString();
+				system("Pause");
+			}
+			ArenaManager(soldier1, mag2);
+		}
+		if (picked == 1 && picked2 == 3)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << soldier1->toString();
+				cout << "*Contender 2:*\n" << father2->toString();
+				system("Pause");
+			}
+			ArenaManager(soldier1, father2);
+		}
+		if (picked == 2 && picked2 == 3)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << mag->toString();
+				cout << "*Contender 2:*\n" << father2->toString();
+				system("Pause");
+			}
+			ArenaManager(mag, father2);
+		}
+		if (picked == 3 && picked2 == 3)
+		{
+			cout << "To view all of the contenders Enter number (1)... \n Enter any key to continue\n";
+			cin >> press;
+			if (press == 1)
+			{
+				cout << "*Contender 1:*\n" << father->toString();
+				cout << "*Contender 2:*\n" << father2->toString();
+				system("Pause");
+			}
+			ArenaManager(father, father2);
+		}
 	
-	srand(time(NULL));
-	
-	Warrior* soldier1 = new Warrior(name, 200, stg, 17, wpdmg,12,0,20);
-	
-	Mage* mag = new Mage("Ghoul", 185, 15, 19, 20, 80,12,0,20);
-
-	Priest* father = new Priest("Rohani", 150, 16, 20, 10, 70,12,0,10);
-
-	cout << "Contender 1:\n" << soldier1->toString();
-	cout << "Contender 2:\n" << mag->toString();
-	system("Pause");
-
-	
-	
-	ArenaManager(soldier1, mag);
-
-
-
 	return 0;
+
 }
